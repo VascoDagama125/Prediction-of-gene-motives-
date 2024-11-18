@@ -1,15 +1,9 @@
 import pandas as pd
 
-
 file = "arabidopsis_thaliana_tair_gtf.xlsx"
 df = pd.read_excel(file, sheet_name = 0)
 
-
-
-
-
 #print(selected_columns_gtf. info())
-
 
 #filter_df = df[df['feature'] == 'CDS']
 #filtered_df filters df to include only rows where feature column's values are in the specified list

@@ -1,18 +1,18 @@
 import pandas as pd
 
+# Load the data from an Excel file
 file = "arabidopsis_thaliana_tair_gtf.xlsx"
-df = pd.read_excel(file, sheet_name = 0)
+tss_data = pd.read_excel(file, sheet_name=0)
 
-#print(selected_columns_gtf. info())
+# Extract GeneID from the 'attribute' column
+tss_data['GeneID'] = tss_data['attribute'].str.extract(r'ID=([^;]+)')
 
-#filter_df = df[df['feature'] == 'CDS']
-#filtered_df filters df to include only rows where feature column's values are in the specified list
-filtered_df = df[df['feature'].isin(['CDS', 'three_prime_UTR', 'five_prime_UTR'])]
-#filters specified feature data and connects with start and end coordinates
-selected_columns = filtered_df.loc[:,["feature", "start", "end"]]
-print(selected_columns)
-print(selected_columns.info())
+# Adjust BED format fields:
+# Assuming 'TSS' is the transcription start site (1-based), convert it to 0-based BED convention.
 
-#filter_df = df[df['feature'] == 'CDS']
+# Create a BED file with the desired columns
+bed_data = tss_data[['seq_name', 'start', 'end', 'GeneID', 'strand']]
 
+# Save to a BED file
+bed_data.to_csv('newfile.bed', sep='\t', header=False, index=False)
 

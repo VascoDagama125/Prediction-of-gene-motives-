@@ -1,7 +1,7 @@
 import pandas as pd
 
 FILE_PATH = "/home/paweldyngosz/Dokumenty/Praca_Dyplomowa/arabidopsis_thaliana_tair_gtf.xlsx"
-OUTPUT_FILE_PATH = "/merged_file.csv"
+OUTPUT_FILE_PATH = "/home/paweldyngosz/Dokumenty/Praca_Dyplomowa/merged_file.csv"
 SEPARATOR = '\t'
 INCLUDE_HEADER = False
 INCLUDE_INDEX = False
@@ -39,11 +39,12 @@ try:
         print("Warning: Merged DataFrame is empty.")
 
     # Save the merged DataFrame to a CSV file
-    merged_df.to_csv(OUTPUT_FILE_PATH, sep=SEPARATOR, header=INCLUDE_HEADER, index=INCLUDE_INDEX)
+    merged_df.to_csv(OUTPUT_FILE_PATH, sep=SEPARATOR, header=True, index=INCLUDE_INDEX)
+
     print("Merging and saving completed successfully.")
 
-except FileNotFoundError:
-    print(f"File not found: {FILE_PATH}")
+except FileNotFoundError as e:
+    print(f"File not found: {FILE_PATH}. {e}")
 except pd.errors.EmptyDataError:
     print("No data found in the Excel file.")
 except Exception as e:

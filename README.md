@@ -1,0 +1,1 @@
+a python language pprogram that could make gene function predictions using gene ontology annotations for the model plant Arabidopsis Thaliana, using a ready-made and updated genome assembly. Program uses machine learning algorithms as well as pandas, scikit-learn, biopython
